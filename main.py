@@ -3,8 +3,8 @@ import pygame
 import time
 
 # screen size 
-WINDOW_W = 1000
-WINDOW_H = 800
+WINDOW_W = 837
+WINDOW_H = 478
 WINDOW_SIZE = (WINDOW_W, WINDOW_H)
 
 BK_COLOR = (68,132,88)
@@ -13,9 +13,14 @@ pygame.init()
 screen = pygame.display.set_mode(WINDOW_SIZE)
 pygame.display.set_caption("My First Game")
 
-bk_image = pygame.image.load("background.jpg")
-
+bk_image = pygame.image.load("bgimage.jpg")
+ship = pygame.image.load("spaceship.png")
+ship = pygame.transform.scale(ship,(80,50))
 clock = pygame.time.Clock()
+
+shape_y = WINDOW_H-50
+shape_x = WINDOW_W/2
+
 
 circle_x = 10
 circle_y = WINDOW_H /2
@@ -24,6 +29,7 @@ play = True
 while play:
   # screen.fill(BK_COLOR)
   screen.blit(bk_image,(0,0))
+  screen.blit(ship,(shape_x,shape_y))
   pygame.draw.circle(screen,(255,255,255),(circle_x , circle_y),10)
   
   circle_x +=x_step
