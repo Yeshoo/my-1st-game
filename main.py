@@ -14,7 +14,7 @@ pygame.mixer.Channel(1).play(music)
 screen = pygame.display.set_mode(WINDOW_SIZE)
 pygame.display.set_caption("My First Game")
 
-# www.pngaaa.com
+
 bk_image = pygame.image.load("bgimage.jpg")
 ship_image = pygame.image.load("spaceship.png")
 ship_image = pygame.transform.scale(ship_image, (50, 80)) 
@@ -47,7 +47,6 @@ def print_lasers():
     l = laser_list[i]
     screen.blit(laser_image,(l[0],l[1]))
     laser_list[i] = [l[0],l[1]-30]
-
   if len(laser_list) > 0 and laser_list[0][1] < 0:
     laser_list.remove(laser_list[0])
 
