@@ -1,11 +1,13 @@
 import pygame
-
+import pygame.freetype
 # screen size 
 WINDOW_W = 837
 WINDOW_H = 478 
 WINDOW_SIZE = (WINDOW_W, WINDOW_H)
 
 pygame.init()
+myfont = pygame.font.SysFont('Comic Sans MS', 30)
+text = myfont.render("Teddy game", False, (255,255,255))
 music = pygame.mixer.Sound("beat.mp3")
 pygame.mixer.music.load("beat.mp3")
 pygame.mixer.music.play(-1,0.0)
@@ -50,10 +52,28 @@ def print_lasers():
     laser_list.remove(laser_list[0])
 
 
+def is_laser_hit(laser_pos):
+  return abs(laser_pos[0]-circle_x) <50 and abs(laser_pos[1]-circle_y) <50 
+
+
+def print_lasers():
+  for i in range(len(laser_list)):
+    l = laser_list[i]
+    screen.blit(laser_image,(l[0],l[1]))
+    laser_list[i] = [l[0],l[1]-30]
+    laser = laser_list[i]
+    screen.blit(laser_image,(laser[0],laser[1]))
+    laser_list[i] = [laser[0],laser[1]-30]
+    if is_laser_hit(laser):
+      print("hit")
+
+
+
 
 
 while play:
   screen.blit(bk_image,(0,0))
+  screen.blit(text,(0,0))
   for event in pygame.event.get():
     if event.type == pygame.QUIT:
       play = False
@@ -63,7 +83,11 @@ while play:
       if event.key == pygame.K_RIGHT:
         ship_x += x_step
       if event.key == pygame.K_SPACE:
-        laser_list.append([ship_x+21,ship_y])
+        laser_list.append([ship_x+21,ship_y]) 
+        music = pygame.mixer.Sound("beam.mp3")
+        pygame.mixer.music.load("beam.mp3")
+        pygame.mixer.music.play(1,0.0)
+      
 
   screen.blit(ship_image,(ship_x,ship_y))
   pygame.draw.circle(screen,(255,255,255),(circle_x , circle_y),10)
