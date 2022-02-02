@@ -10,7 +10,7 @@ myfont = pygame.font.SysFont('Comic Sans MS', 30)
 text = myfont.render("Teddy game", False, (255,255,255))
 music = pygame.mixer.Sound("beat.mp3")
 pygame.mixer.music.load("beat.mp3")
-pygame.mixer.music.play(-1,0.0)
+pygame.mixer.Channel(1).play(music)
 screen = pygame.display.set_mode(WINDOW_SIZE)
 pygame.display.set_caption("My First Game")
 
@@ -86,7 +86,7 @@ while play:
         laser_list.append([ship_x+21,ship_y]) 
         music = pygame.mixer.Sound("beam.mp3")
         pygame.mixer.music.load("beam.mp3")
-        pygame.mixer.music.play(1,0.0)
+        pygame.mixer.music.play()
       
 
   screen.blit(ship_image,(ship_x,ship_y))
@@ -103,5 +103,4 @@ while play:
 
 
   clock.tick(10)
-pygame.mixer.music.stop()
 pygame.quit()
